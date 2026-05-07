@@ -69,8 +69,13 @@ export default function FlowiseChat() {
         if (btn) btn.style.display = 'none'
       }
       setTimeout(hide, 500)
-      setTimeout(hide, 1500)
-      setTimeout(hide, 3000)
+setTimeout(hide, 1500)
+setTimeout(hide, 3000)
+setTimeout(hide, 5000)
+setTimeout(hide, 8000)
+
+// Sürekli gizle
+setInterval(hide, 1000)
     `;
 
     document.body.appendChild(script);
