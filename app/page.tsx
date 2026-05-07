@@ -5,7 +5,7 @@ import { ArrowRight, ShieldCheck, Sparkles } from "lucide-react";
 import FlowiseChat from "@/components/FlowiseChat";
 
 // ⚠️ SSL kurduktan sonra bu URL'yi güncelle:
-const FLOWISE_HOST = "https://ai.nutramol.com"; // kendi domain'inle değiştir
+const FLOWISE_HOST = "https://flowise.nutramolai.com"; // kendi domain'inle değiştir
 const CHATFLOW_ID = "5d06ae21-5294-492c-a2aa-5ebb0b5743c7";
 
 const openChat = () => {
