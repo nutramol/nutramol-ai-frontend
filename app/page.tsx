@@ -228,30 +228,6 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="fixed bottom-8 right-8 z-50 flex flex-col items-end gap-3">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 0.5 }}
-          className="relative rounded-2xl bg-gray-900 px-4 py-2 text-sm text-white shadow-lg"
-        >
-          💬 C vitamini hakkında soru sorun!
-          <div className="absolute -bottom-1.5 right-6 h-3 w-3 rotate-45 bg-gray-900" />
-        </motion.div>
-
-        <motion.button
-          onClick={openChat}
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          className="relative flex h-16 w-16 items-center justify-center rounded-full bg-emerald-600 text-white shadow-2xl shadow-emerald-300"
-        >
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-40" />
-          <MessageCircle size={28} />
-        </motion.button>
-      </div>
     </main>
   );
 }

@@ -16,15 +16,35 @@ export default function FlowiseChat() {
   useEffect(() => {
     if (window.flowiseChatbot) return;
 
+    const getBtn = (): HTMLElement | null => {
+      const host = document.querySelector("flowise-chatbot");
+      return (host?.shadowRoot?.querySelector('[part="button"]') as HTMLElement) ?? null;
+    };
+
+    const hideBtn = () => {
+      const btn = getBtn();
+      if (btn) btn.style.display = "none";
+    };
+
+    window.openFlowiseChat = () => {
+      const btn = getBtn();
+      if (btn) {
+        btn.style.display = "flex";
+        btn.click();
+      }
+    };
+
     const script = document.createElement("script");
     script.type = "module";
-    script.innerHTML = `
-      import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
-      window.flowiseChatbot = Chatbot
+    script.src = "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js";
 
-      Chatbot.init({
-        chatflowid: "${CHATFLOW_ID}",
-        apiHost: "${FLOWISE_HOST}",
+    script.onload = () => {
+      const win = window as any;
+      if (!win.Chatbot) return;
+
+      win.Chatbot.init({
+        chatflowid: CHATFLOW_ID,
+        apiHost: FLOWISE_HOST,
         theme: {
           button: {
             backgroundColor: "#059669",
@@ -44,39 +64,19 @@ export default function FlowiseChat() {
               "C vitamini eksikliği belirtileri nelerdir?",
               "C vitamini hangi besinlerde bulunur?"
             ],
-            botMessage: {
-              backgroundColor: "#f0fdf4",
-              textColor: "#111827"
-            },
-            userMessage: {
-              backgroundColor: "#059669",
-              textColor: "#ffffff"
-            },
-            textInput: {
-              placeholder: "C vitamini hakkında sorunuzu yazın..."
-            }
+            botMessage: { backgroundColor: "#f0fdf4", textColor: "#111827" },
+            userMessage: { backgroundColor: "#059669", textColor: "#ffffff" },
+            textInput: { placeholder: "C vitamini hakkında sorunuzu yazın..." }
           }
         }
-      })
+      });
 
-      window.openFlowiseChat = () => {
-        const btn = document.querySelector('.flowise-chatbot-button')
-        if (btn) btn.click()
-      }
+      window.flowiseChatbot = win.Chatbot;
 
-      const hide = () => {
-        const btn = document.querySelector('.flowise-chatbot-button')
-        if (btn) btn.style.display = 'none'
-      }
-      setTimeout(hide, 500)
-setTimeout(hide, 1500)
-setTimeout(hide, 3000)
-setTimeout(hide, 5000)
-setTimeout(hide, 8000)
-
-// Sürekli gizle
-setInterval(hide, 1000)
-    `;
+      setTimeout(hideBtn, 500);
+      setTimeout(hideBtn, 1500);
+      setTimeout(hideBtn, 3000);
+    };
 
     document.body.appendChild(script);
 
