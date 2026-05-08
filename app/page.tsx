@@ -279,7 +279,7 @@ export default function Home() {
       {/* FINAL CTA */}
       <section className="relative z-10 px-6 pb-32">
         <div className="mx-auto max-w-5xl rounded-[40px] bg-emerald-600 px-10 py-20 text-center text-white shadow-2xl shadow-emerald-200">
-          <h2 className="text-4xl font-black tracking-tight lg:text-5xl">Nutramol AI'ı Deneyin</h2>
+          <h2 className="text-4xl font-black tracking-tight lg:text-5xl">Nutramol AI&apos;ı Deneyin</h2>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-emerald-50">
             Bilimsel kaynaklarla desteklenen yapay zeka sağlık asistanlarını şimdi keşfedin.
           </p>

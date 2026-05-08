@@ -2,11 +2,15 @@
 
 import { useEffect } from "react";
 
+interface FlowiseChatbot {
+  init: (config: Record<string, unknown>) => void;
+}
+
 declare global {
   interface Window {
     openCVitaminChat?: () => void;
     openIyotChat?: () => void;
-    Chatbot?: any;
+    Chatbot?: FlowiseChatbot;
   }
 }
 
@@ -15,13 +19,12 @@ const CVITAMIN_ID = "5d06ae21-5294-492c-a2aa-5ebb0b5743c7";
 const IYOT_ID = "9341a052-a92f-4f14-9ac4-b9e05ec68fca";
 
 function initChatbot(chatflowid: string, color: string, title: string, welcome: string, prompts: string[], placeholder: string, botBg: string) {
-  const win = window as any;
-  if (!win.Chatbot) return;
+  if (!window.Chatbot) return;
 
   const existing = document.querySelector("flowise-chatbot");
   if (existing) existing.remove();
 
-  win.Chatbot.init({
+  window.Chatbot.init({
     chatflowid,
     apiHost: FLOWISE_HOST,
     theme: {
